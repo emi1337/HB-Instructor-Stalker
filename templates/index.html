@@ -1,0 +1,145 @@
+{% extends "layout.html" %}
+
+{% block style %}
+body {
+padding-top: 40px;
+padding-bottom: 40px;
+background-color: #f5f5f5;
+}
+
+{% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+
+	<h1>Where the heck are my Hackbright Instructors?</h1>
+
+	<div id="instructor-display">
+		<div id="row1">
+
+			<div id="christian-area" class="span3 offset3">
+				{% if instructors[1].status == 0 %}
+				<img id="christianpic-bw" class="picture" src="../static/img/christian_bw.png"> 
+				{% else %}
+				<img id="christianpic" class="picture" src="../static/img/christian.png"> 
+				{% endif %}
+
+				<div id="christian-status" class="statuses">
+					Christian is not in right now.
+				</div>
+				{% if session.get("user_id") < 4 %}
+
+				<button id="christian-checkin" class="checkin-butts">Check in as Christian</button>
+
+				<div id="christian-checkin-options">
+					<div id="checkin-instructions">
+						Will they be available in the office or not in the office but able to be contacted online?
+					</div>
+
+					<form action="{{url_for("change_checkin")}}}" method="POST">
+						<input type="hidden" name="christian-checkin-office" value="christian-in-office">
+						<button id="christian-in-office" class="option-butts">In office</button>
+					</form>
+
+					<form action="{{url_for("change_checkin")}}}" method="POST">
+						<input type="hidden" name="christian-checkin-contact" value="christian-in-contact">
+						<button id="christian-can-contact" class="option-butts">Online</button>
+					</form>
+				</div>
+				<button id="christian-checkout" class="checkout-butts">Check out as Christian</button>
+
+				<button id="christian-full-checkout" class="checkout-butts">No--full check out</button>
+			</div>		
+			{% endif %}
+			<div id="liz-area" class="span3">
+				{% if instructors[2].status == 0 %}
+				<img id="lizpic-bw" class="picture" src="../static/img/liz_bw.png"> 
+				{% else %}
+				<img id="lizpic" class="picture" src="../static/img/liz.png"> 
+				{% endif %}
+
+				<div id="liz-status" class="statuses">Liz is not in right now.</div>
+				{% if session.get("user_id") > 4 %}
+				<button id="liz-checkin" class="checkin-butts">Check in as Liz</button>  
+
+				<div id="liz-checkin-options">
+					<div id="checkin-instructions">Will they be available in the office or not in the office but able to be contacted online?</div>
+					<button id="liz-in-office" class="option-butts">In office</button>
+					<button id="liz-can-contact" class="option-butts">Online</button>
+				</div>
+
+				<div id="liz-checkout-options"
+				<button id="liz-checkout" class="checkout-butts">Check out as Liz</button>
+
+				<div id="checkout-instructions">Will they be available in a different way?</div>
+				<button id="liz-full-checkout" class="checkout-butts">No--full check out</button>
+
+			</div> <!-- end liz-checkout-options -->
+			{% endif %}
+		</div> <!-- end Liz quad -->
+
+	</div> <!-- end row1 -->
+
+
+	<div id="row2">
+		<div id="cynthia-area" class="span3 offset3">
+			{% if instructors[3].status == 0 %}
+			<img id="cynthiapic-bw" class="picture" src="../static/img/cynthia_bw.png"> 
+			{% else %}
+			<img id="cynthiapic" class="picture" src="../static/img/cynthia.png"> 
+			{% endif %}
+
+			<div id="cynthia-status" class="statuses">Cynthia is not in right now.</div>
+			{% if session.get("user_id") < 4 %}
+			<button id="cynthia-checkin" class="checkin-butts">Check in as Cynthia</button>
+
+			<div id="cynthia-checkin-options"</div>
+				<div id="checkin-instructions">Will they be available in the office or not in the office but able to be contacted online?</div>
+				<button id="cynthia-in-office" class="option-butts">In office</button>
+				<button id="cynthia-can-contact" class="option-butts">Online</button>
+
+
+				<button id="cynthia-checkout" class="checkout-butts">Check out as Liz</button>
+
+				<div id="checkout-instructions">Will they be available in a different way?</div>
+
+				<button id="cynthia-full-checkout" class="checkout-butts">No--full check out</button>
+
+				{% endif %}
+			</div> <!-- end cynthia quad -->
+
+			<div id="nick-area" class="span3">
+				{% if instructors[4].status == 0 %}
+				<img id="nickpic-bw" class="picture" src="../static/img/hbsymbol_bw.jpg"> 
+				{% else %}
+				<img id="nickpic" class="picture" src="../static/img/hbsymbol.png"> 
+				{% endif %}
+
+				<div id="nick-status" class="statuses">Nick is not in right now.</div>
+				{% if session.get("user_id") < 4 %}
+				<button id="nick-checkin" class="checkin-butts">Check in as Nick</button>
+
+				<div id="nick-checkin-options"</div>
+					<div id="checkin-instructions">Will they be available in the office or not in the office but able to be contacted online?</div>
+					<button id="nick-in-office" class="option-butts">In office</button>
+					<button id="nick-can-contact" class="option-butts">Online</button>
+
+
+					<button id="nick-checkout" class="checkout-butts">Check out as Liz</button>
+
+					<div id="checkout-instructions">Will they be available in a different way?</div>
+
+					<button id="nick-full-checkout" class="checkout-butts">No--full check out</button>
+
+					{% endif %}
+
+				</div> <!-- end nick quad -->
+			</div> <!-- end row2 -->
+
+		</div> <!-- end instructor display -->
+	</div> <!-- end container -->
+
+	{% endblock %}
+
